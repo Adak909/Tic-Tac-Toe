@@ -1,6 +1,6 @@
-let music = new Audio("music.mp3")
-let turnAudio = new Audio("ting.mp3")
-let gameover = new Audio("gameover.mp3")
+let music = new Audio("music/music.mp3")
+let turnAudio = new Audio("music/ting.mp3")
+let gameover = new Audio("music/gameover.mp3")
 let turn = "X"
 let isgameover = false;
 
@@ -31,6 +31,7 @@ const checkWin = () => {
             document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = "200px";
             document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
             document.querySelector(".line").style.width = "22vw";
+            music.play();
         }
     })
 
@@ -53,6 +54,11 @@ Array.from(boxes).forEach(element => {
     })
 })
 
+//Function to pause music
+function pauseMusic(){
+    console.log("pauseMusic called");
+    music.pause();
+}
 //Add onclick listener torest button
 reset.addEventListener('click', () => {
     let boxTexts = document.querySelectorAll('.boxtext');
@@ -64,5 +70,5 @@ reset.addEventListener('click', () => {
     document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = "0px";
     document.querySelector(".line").style.width = "0vw";
     document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
-    document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px"
+    pauseMusic();
 })
